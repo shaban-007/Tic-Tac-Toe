@@ -1,0 +1,60 @@
+g = [1,2,3,4,5,6,7,8,9]
+def mapping():
+    for i in range(0,9):
+        print(g[i],end=(" "))
+        if i in [2,5,8]:
+            print()
+def choose(var):
+    while True:
+            a=input("Enter the position:" )
+            if a in ["1","2","3","4","5","6","7","8","9"]:
+                a=int(a)
+                if g[a-1] == "x" or g[a-1]=="o":
+                    print ("unvalid try again")
+                    continue
+                else:
+                    g[a-1]=var
+                    break
+            else:
+                print("unvalid rty again")    
+def switch(var):
+    if var == "x":
+            var = "o"
+            return var
+    else :
+            var = "x"
+            return var
+def start():
+    print("choose x or o whose play first")
+    var = input()
+    while var != "x" and var != "o":
+        print("unvalid rty again")
+        var = input()
+    return var
+def check(var):
+    if g[0]==g[1]==g[2] or g[3]==g[4]==g[5] or g[6]==g[7]==g[8] or g[0]==g[3]==g[6] or g[1]==g[4]==g[7] or g[2]==g[5]==g[8] or g[0]==g[4]==g[8] or g[2]==g[4]==g[6] :
+         return True
+
+def draw(x=0):
+    for i in range(9):
+        if  g[i] == "x" or  g[i] == "o":
+            x=x+1
+    return x
+        
+x = start()
+while True:
+    mapping()
+    if draw() == 9:
+        print("draw")
+        break
+    choose(x)
+    if check(x):
+        mapping()
+        print(x + " is win")
+        break
+    x=switch(x)
+    
+        
+    
+    
+    
